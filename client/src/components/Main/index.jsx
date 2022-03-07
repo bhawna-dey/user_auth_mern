@@ -36,7 +36,6 @@ const  Main = () => {
         users && users.map(user=>{
           return(
             <div key={user._id} style={{alignItems:'center',margin:'20px 60px'}}>
-            <h3>Our users</h3>
             <h4>Email:{user.email}</h4>
             <p>First Name:{user.firstName}</p>
             <p>Last Name:{user.lastName}</p>
