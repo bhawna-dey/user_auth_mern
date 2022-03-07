@@ -5,8 +5,10 @@ const cors = require("cors");
 const connection = require("./db");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
+const  usersListRoutes=require("./routes/usersList");
 const User=require('./models/user');
 const mongoose=require('mongoose');
+const apiRoutes = require('./routes/api');
 
 // database connection
 connection();
@@ -15,20 +17,14 @@ connection();
 app.use(express.json());
 app.use(cors());
 
-app.get('/usersList', function(req, res) { 
-    User.find({}, function(err, users) { 
-        var userMap = {}; 
-        users.forEach(function(user) { 
-            userMap[user._id] = user; 
-        }); 
-    res.send(userMap); 
-    }); 
-});
+
 
 
 // routes
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use('/api', apiRoutes);
+//app.use("api/usersList", usersListRoutes);
 
 
 
