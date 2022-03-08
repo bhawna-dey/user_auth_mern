@@ -5,7 +5,6 @@ const cors = require("cors");
 const connection = require("./db");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
-const  usersListRoutes=require("./routes/usersList");
 const User=require('./models/user');
 const mongoose=require('mongoose');
 const apiRoutes = require('./routes/api');
