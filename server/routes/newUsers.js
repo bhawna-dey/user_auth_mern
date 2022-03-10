@@ -1,29 +1,7 @@
-const bcrypt = require("bcrypt");
-
 const router = require("express").Router();
-const { User, validate } = require("../models/user");
 
-router.post("/", async (req, res) => {
-	try {
-		const { error } = validate(req.body);
-		if (error)
-			return res.status(400).send({ message: error.details[0].message });
+var newUserController=require("../controller/newUser.controller");
 
-		const user = await User.findOne({ email: req.body.email });
-		if (user)
-			return res
-				.status(11000)
-				.send({ message: "User with given email already Exist!" });
-
-		const salt = await bcrypt.genSalt(Number(process.env.SALT));
-		const hashPassword = await bcrypt.hash(req.body.password, salt);
-
-		await new User({ ...req.body, password: hashPassword }).save();
-		res.send({ message: "User created successfully" });
-	} catch (error) {
-		res.send({ message: "Internal Server Error" });
-	}
-});
-
+router.post("/", newUserController.addUser);
 
 module.exports = router;
