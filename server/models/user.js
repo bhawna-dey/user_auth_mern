@@ -23,8 +23,8 @@ const validate = (data) => {
 	const schema = Joi.object({
 		firstName: Joi.string().required().label("First Name"),
 		lastName: Joi.string().required().label("Last Name"),
-		email: Joi.string().email().required().label("Email"),
-		password: passwordComplexity().required().label("Password"),
+		email: Joi.string().email().required().label("Email"), //will check fo valid email address
+		password: passwordComplexity().required().label("Password"), //will check for uppercase, special symbol and digits for unique password
 	});
 	return schema.validate(data);
 };

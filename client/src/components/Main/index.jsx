@@ -1,8 +1,10 @@
 import styles from "./styles.module.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import configData from "./config.json";
 
-const baseURL = "http://localhost:8080/api";
+
+const baseURL = configData.SERVER_URL;
 const Main = () => {
   const [showUser, setShowUser] = useState(false);
   const onClick = () => setShowUser(true);
